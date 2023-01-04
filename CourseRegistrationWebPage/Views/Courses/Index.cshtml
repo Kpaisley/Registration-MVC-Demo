@@ -1,0 +1,96 @@
+﻿@model IEnumerable<CourseRegistrationWebPage.Models.Course>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<header>
+    <div class="flex-box">
+    <h1>Courses</h1>
+    <ul>
+        <li><a class="header-links" asp-action="Create">Add a Course</a></li>
+    </ul>
+    </div>
+</header>
+
+
+
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th hidden>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course_Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course_Number)
+            </td>
+
+            <td>
+                <span style="cursor: pointer; text-decoration: underline" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                      onclick="showStudents('@item.ID', '@item.Course_Name')"  >
+                        @Html.DisplayFor(modelItem => item.Course_Name)
+                </span>                
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+               <ul>
+                     <li>@Html.ActionLink("Edit", "Edit", new {  id=item.ID }, new {@class="action-link"}) </li>
+                     <li>@Html.ActionLink("Details", "Details", new { id=item.ID }, new {@class="action-link"}) </li>
+                     <li>@Html.ActionLink("Delete", "Delete", new { id=item.ID }, new {@class="action-link"})</li>
+                    </ul>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="course-modal">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showStudents(id, name) {
+        $('#exampleModalLabel').html("<u>" + name + "</u>");
+
+        const url = "@Url.Action("GetStudentsByCourseID", "Students")/" + id;
+
+        $.get(url, function(data) {
+        $('#course-modal').html(data);
+        });
+    }
+</script>

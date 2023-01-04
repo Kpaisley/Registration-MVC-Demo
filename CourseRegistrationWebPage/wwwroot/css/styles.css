@@ -1,0 +1,82 @@
+﻿* {
+    
+}
+
+header {
+    background-color: lightgray;
+    
+    
+}
+
+header .flex-box {
+    justify-content:space-between;
+}
+
+.flex-box ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+}
+
+.header-links {
+    text-decoration:none;
+    color:#333;
+    margin: 8px;
+}
+
+a:hover {
+    border-bottom:solid 1px #333;
+    color:#333;
+}
+
+td li {
+    list-style:none;
+    margin: 5.5px;
+ 
+}
+
+
+.action-link{
+    color:#333;
+    text-decoration:none;
+    background-color:lightgray;
+    border:2px solid #333;
+    padding:1px;
+    border-radius: 5px;
+    
+}
+    .action-link:hover {
+        background-color: #adacac;
+        border: 2px solid #333;
+        
+    }
+
+
+
+
+
+
+
+.flex-box {
+    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: self-end;
+    height: 100%;
+    border-bottom: solid 2px;
+}
+
+
+    
+
+
+
+
+    
+    
+    
+    
+
+    
+
+
